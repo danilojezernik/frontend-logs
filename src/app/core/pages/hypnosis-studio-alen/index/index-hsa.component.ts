@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-index',
-  templateUrl: './index.component.html'
+  templateUrl: './index-hsa.component.html'
 })
-export class IndexComponent {
+export class IndexHsaComponent {
 
 }
