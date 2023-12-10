@@ -5,12 +5,13 @@ import {HypnosisStudioAlenService} from "../../../../services/api/hypnosis-studi
   selector: 'app-index',
   templateUrl: './index-hypnosis-studio-alen.component.html'
 })
-export class IndexHypnosisStudioAlenComponent implements OnInit{
+export class IndexHypnosisStudioAlenComponent implements OnInit {
 
   _api = inject(HypnosisStudioAlenService)
 
   privateActionCount: number | undefined;
   publicActionCount: number | undefined;
+  backendActionCount: number | undefined;
 
   ngOnInit() {
     this.loadAllActionCounts()
@@ -21,9 +22,13 @@ export class IndexHypnosisStudioAlenComponent implements OnInit{
       this.privateActionCount = data.length;
     })
 
-    this._api.getAllPublicLogs().subscribe( data => {
+    this._api.getAllPublicLogs().subscribe(data => {
       this.publicActionCount = data.length;
-    } )
+    })
+
+    this._api.getAllBackendLogs().subscribe(data => {
+      this.backendActionCount = data.length;
+    })
   }
 
 

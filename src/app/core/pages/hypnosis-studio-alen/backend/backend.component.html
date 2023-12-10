@@ -1,25 +1,23 @@
-<h1 class="text-center pt-5 pb-4" style="font-size: 2rem;">PUBLIC Admin actions</h1>
+<h1 class="text-center pt-5 pb-4" style="font-size: 2rem;">BACKEND Admin actions</h1>
 <div class="container p-0">
-  <button class="text-uppercase" mat-raised-button color="warn" style="width: 100%; height: 50px; border-radius: 0;"
-          (click)="deleteAllLogs()">
-    Izbriši vse loge
+  <button class="text-uppercase" mat-raised-button color="warn" style="width: 100%; height: 50px; border-radius: 0;" (click)="deleteAllLogs()">Izbriši
+    vse loge
   </button>
-
   <!-- PRIKAZ BLOGA -->
   <div class="table-responsive-lg">
 
     <div style="margin: 0 auto">
-      <div *ngIf="!public && !spinner">
+      <div *ngIf="!backend && !spinner">
         Ni podatkov za prikaz
       </div>
     </div>
 
     <mat-form-field style="width: 100%;">
-      <mat-label>Filtriraj vnose...</mat-label>
+      <mat-label>Filtriraj objave</mat-label>
       <input matInput (keyup)="applyFilter($event)" #input>
     </mat-form-field>
 
-    <table class="shadow" *ngIf="public" mat-table [dataSource]="dataSource">
+    <table class="shadow" *ngIf="backend" mat-table [dataSource]="dataSource">
 
       <!-- Blog ID Column -->
       <ng-container matColumnDef="log_id">
@@ -86,6 +84,7 @@
           </ng-container>
         </td>
       </tr>
+
     </table>
   </div>
 

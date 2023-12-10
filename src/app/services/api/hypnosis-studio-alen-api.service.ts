@@ -87,4 +87,42 @@ export class HypnosisStudioAlenService {
       })
     )
   }
+
+  // BACKEND
+
+  /**
+   * Get all backend logs
+   * @returns Logging[]
+   * **/
+  getAllBackendLogs(): Observable<Logging[]> {
+    return this._http.get<Logging[]>(`${environment.backUrl}/logs_hsa/backend`).pipe(
+      catchError(error => {
+        // Log an error message if an error occurs during the API call
+        console.error("Error adding a new post:", error);
+        // Return a new observable with an error message if there's an error
+        return throwError('Something went wrong')
+      })
+    )
+  }
+
+  deleteBackendById(id: string): Observable<any> {
+    return this._http.delete<any>(`${environment.backUrl}/logs_hsa/backend/${id}`).pipe(
+      catchError(error => {
+        // Log an error message if an error occurs during the API call
+        console.error("Error getting all the review data:", error)
+        // Return a new observable with an error message if there's an error
+        return throwError('Something went wrong')
+      })
+    )
+  }
+  deleteBackend(): Observable<any> {
+    return this._http.delete<any>(`${environment.backUrl}/logs_hsa/backend`).pipe(
+      catchError(error => {
+        // Log an error message if an error occurs during the API call
+        console.error("Error getting all the review data:", error)
+        // Return a new observable with an error message if there's an error
+        return throwError('Something went wrong')
+      })
+    )
+  }
 }

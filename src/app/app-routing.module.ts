@@ -6,6 +6,7 @@ import {PublicComponent} from "./core/pages/hypnosis-studio-alen/public/public.c
 import {IndexHypnosisStudioAlenComponent} from "./core/pages/hypnosis-studio-alen/index-hsa/index-hypnosis-studio-alen.component";
 import {IndexComponent} from "./core/pages/index-login/index.component";
 import {AuthGuardService} from "./services/auth/auth-guard.service";
+import {BackendComponent} from "./core/pages/hypnosis-studio-alen/backend/backend.component";
 
 const routes: Routes = [
   {
@@ -30,6 +31,12 @@ const routes: Routes = [
     path: 'hypnosis-studio-alen-public',
     component: PublicComponent,
     title: 'HSA Public',
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'hypnosis-studio-alen-backend',
+    component: BackendComponent,
+    title: 'HSA Backend',
     canActivate: [AuthGuardService]
   },
   {

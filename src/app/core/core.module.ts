@@ -14,6 +14,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {ServicesModule} from "../services/services.module";
 import {IndexComponent} from "./pages/index-login/index.component";
 import {FormsModule} from "@angular/forms";
+import {BackendComponent} from "./pages/hypnosis-studio-alen/backend/backend.component";
 
 
 @NgModule({
@@ -22,14 +23,16 @@ import {FormsModule} from "@angular/forms";
     IndexHsaComponent,
     PublicComponent,
     IndexHypnosisStudioAlenComponent,
-    IndexComponent
+    IndexComponent,
+    BackendComponent
   ],
   exports: [
     PrivateComponent,
     IndexHsaComponent,
     PublicComponent,
     IndexHypnosisStudioAlenComponent,
-    IndexComponent
+    IndexComponent,
+    BackendComponent
   ],
   imports: [
     CommonModule,
