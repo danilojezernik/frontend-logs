@@ -141,7 +141,7 @@ export class HypnosisStudioAlenService {
   }
 
   showAllUniqueClientHostBackend(): Observable<any> {
-     return this._http.get<any>(`${environment.localUrl}/logs_hsa/unique_client_hosts`).pipe(
+     return this._http.get<any>(`${environment.backUrl}/logs_hsa/unique_client_hosts`).pipe(
       catchError(error => {
         // Log an error message if an error occurs during the API call
         console.error("Error getting all the review data:", error)
