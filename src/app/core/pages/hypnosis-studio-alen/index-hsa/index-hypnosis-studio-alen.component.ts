@@ -13,8 +13,11 @@ export class IndexHypnosisStudioAlenComponent implements OnInit {
   publicActionCount: number | undefined;
   backendActionCount: number | undefined;
 
+  uniqueClientHosts: any[] = [];
+
   ngOnInit() {
     this.loadAllActionCounts()
+    this.getUniqueClientHosts()
   }
 
   loadAllActionCounts() {
@@ -31,5 +34,10 @@ export class IndexHypnosisStudioAlenComponent implements OnInit {
     })
   }
 
+  getUniqueClientHosts() {
+    this._api.showAllUniqueClientHostBackend().subscribe((data) => {
+      this.uniqueClientHosts = data;
+    })
+  }
 
 }

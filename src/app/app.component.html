@@ -1,4 +1,11 @@
-<div class="container p-5">
-  <router-outlet></router-outlet>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1" *ngIf="!sharedService.dontShowHeaderFooter && shouldShowHeader">
+      <app-header></app-header>
+    </div>
+    <div class="col-11 p-5">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
 <go-back></go-back>

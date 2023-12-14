@@ -67,6 +67,18 @@ export class HypnosisStudioAlenService {
     )
   }
 
+
+  getCountByDevice(deviceType: string): Observable<any> {
+    return this._http.get<any>(`${environment.backUrl}/logs_hsa/count_logs_with_desktop?device_type=${deviceType}`).pipe(
+      catchError(error => {
+        // Log an error message if an error occurs during the API call
+        console.error(`Error fetching counts for ${deviceType}:`, error);
+        // Return a new observable with an error message if there's an error
+        return throwError('Something went wrong')
+      })
+    )
+  }
+
   deletePublicById(id: string): Observable<any> {
     return this._http.delete<any>(`${environment.backUrl}/logs_hsa/public/${id}`).pipe(
       catchError(error => {
@@ -77,6 +89,7 @@ export class HypnosisStudioAlenService {
       })
     )
   }
+
   deletePublic(): Observable<any> {
     return this._http.delete<any>(`${environment.backUrl}/logs_hsa/public`).pipe(
       catchError(error => {
@@ -115,8 +128,20 @@ export class HypnosisStudioAlenService {
       })
     )
   }
+
   deleteBackend(): Observable<any> {
     return this._http.delete<any>(`${environment.backUrl}/logs_hsa/backend`).pipe(
+      catchError(error => {
+        // Log an error message if an error occurs during the API call
+        console.error("Error getting all the review data:", error)
+        // Return a new observable with an error message if there's an error
+        return throwError('Something went wrong')
+      })
+    )
+  }
+
+  showAllUniqueClientHostBackend(): Observable<any> {
+     return this._http.get<any>(`${environment.localUrl}/logs_hsa/unique_client_hosts`).pipe(
       catchError(error => {
         // Log an error message if an error occurs during the API call
         console.error("Error getting all the review data:", error)

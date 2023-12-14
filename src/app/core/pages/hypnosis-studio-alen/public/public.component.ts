@@ -17,6 +17,8 @@ export class PublicComponent implements OnInit, OnDestroy {
 
   public: any | undefined;
   spinner: boolean = false;
+  desktopCount: number = 0;
+  mobileCount: number = 0;
 
 
   dataSource = new MatTableDataSource<Logging>()
@@ -33,6 +35,8 @@ export class PublicComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
+    this.fetchCounts('Desktop');
+    this.fetchCounts('Mobile');
     this.loadAllEventsPublic()
   }
 
@@ -54,6 +58,20 @@ export class PublicComponent implements OnInit, OnDestroy {
       console.error(error)
       this.spinner = false
     })
+  }
+
+  fetchCounts(deviceType: string) {
+    this._api.getCountByDevice(deviceType).subscribe(
+      (data) => {
+        if(deviceType == 'Desktop') {
+          this.desktopCount = data.count;
+        } else if (deviceType == 'Mobile') {
+          this.mobileCount = data.count;
+        }
+      }, error => {
+        console.error(error)
+      }
+    )
   }
 
   deleteLog(id: string) {

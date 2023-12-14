@@ -15,6 +15,7 @@ import {ServicesModule} from "../services/services.module";
 import {IndexComponent} from "./pages/index-login/index.component";
 import {FormsModule} from "@angular/forms";
 import {BackendComponent} from "./pages/hypnosis-studio-alen/backend/backend.component";
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -24,16 +25,18 @@ import {BackendComponent} from "./pages/hypnosis-studio-alen/backend/backend.com
     PublicComponent,
     IndexHypnosisStudioAlenComponent,
     IndexComponent,
-    BackendComponent
+    BackendComponent,
+    HeaderComponent
   ],
-  exports: [
-    PrivateComponent,
-    IndexHsaComponent,
-    PublicComponent,
-    IndexHypnosisStudioAlenComponent,
-    IndexComponent,
-    BackendComponent
-  ],
+    exports: [
+        PrivateComponent,
+        IndexHsaComponent,
+        PublicComponent,
+        IndexHypnosisStudioAlenComponent,
+        IndexComponent,
+        BackendComponent,
+        HeaderComponent
+    ],
   imports: [
     CommonModule,
     RouterLink,
