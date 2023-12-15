@@ -8,16 +8,24 @@ import {HypnosisStudioAlenService} from "../../../../services/api/hypnosis-studi
 export class IndexHypnosisStudioAlenComponent implements OnInit {
 
   _api = inject(HypnosisStudioAlenService)
+  geolocationData: any;
 
   privateActionCount: number | undefined;
   publicActionCount: number | undefined;
   backendActionCount: number | undefined;
 
-  uniqueClientHosts: any[] = [];
+  uniqueClientHosts: any;
 
   ngOnInit() {
     this.loadAllActionCounts()
     this.getUniqueClientHosts()
+    this.getAllDataUserGeoLocatin()
+  }
+
+  getAllDataUserGeoLocatin() {
+    this._api.getDataUserLoc().subscribe(data => {
+      this.geolocationData = data
+    })
   }
 
   loadAllActionCounts() {
@@ -37,6 +45,12 @@ export class IndexHypnosisStudioAlenComponent implements OnInit {
   getUniqueClientHosts() {
     this._api.showAllUniqueClientHostBackend().subscribe((data) => {
       this.uniqueClientHosts = data;
+    })
+  }
+
+  deleteAllLogs() {
+    this._api.deleteGeoLocationAll().subscribe(() => {
+      this.getAllDataUserGeoLocatin()
     })
   }
 

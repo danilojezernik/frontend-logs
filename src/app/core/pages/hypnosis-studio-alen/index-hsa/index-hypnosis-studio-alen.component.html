@@ -43,26 +43,65 @@
 
 <div class="container text-center pt-4">
 
-  <h2>Pridobivanje unikatnih gostov s štetjem obiskov</h2>
+  <div class="row">
+    <div class="col-md-5">
+      <h2>Pridobivanje unikatnih gostov s štetjem obiskov</h2>
 
-  <div class="d-flex justify-content-center">
-    <table class="table table-striped table-dark" style="width: 500px">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Klient</th>
-        <th scope="col">Št. obiskov</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class="text-white" *ngFor="let item of uniqueClientHosts; let i = index">
-        <td>{{ i + 1 }}</td>
-        <td>{{ item['client_host'] }}</td>
-        <td>{{ item.count }}</td>
-      </tr>
-      </tbody>
-    </table>
+      <div class="d-flex justify-content-center">
+        <table class="table table-striped table-dark">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Klient</th>
+            <th scope="col">Št. obiskov</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="text-white" *ngFor="let item of uniqueClientHosts; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item['client_host'] }}</td>
+            <td>{{ item.count }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <h2>Pridobivanje lokacijskih informacij uporabnika</h2>
+      <button (click)="deleteAllLogs()">Delete all</button>
+
+      <div class="d-flex justify-content-center">
+        <table class="table table-striped table-dark">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Klient</th>
+            <th scope="col">cca. lokacija</th>
+            <th scope="col">cca. regija</th>
+            <th scope="col">Log - Lat</th>
+            <th scope="col">ORG</th>
+            <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="text-white" *ngFor="let data of geolocationData; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ data.ip }}</td>
+            <td>{{ data.city }}</td>
+            <td>{{ data.region }}, {{ data.country }}</td>
+            <td>{{data.loc.replace(',', ' ')}}</td>
+            <td>{{data.org}}</td>
+            <td>
+              <button></button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
+
+
 
 </div>
 

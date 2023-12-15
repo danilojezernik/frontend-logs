@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {Logging} from "../models/logging";
 import {environment} from "../../../environments/environment.development";
+import {Geolocation} from "../models/geolocation";
 
 @Injectable({
   providedIn: 'root'
@@ -142,6 +143,40 @@ export class HypnosisStudioAlenService {
 
   showAllUniqueClientHostBackend(): Observable<any> {
      return this._http.get<any>(`${environment.backUrl}/logs_hsa/unique_client_hosts`).pipe(
+      catchError(error => {
+        // Log an error message if an error occurs during the API call
+        console.error("Error getting all the review data:", error)
+        // Return a new observable with an error message if there's an error
+        return throwError('Something went wrong')
+      })
+    )
+  }
+
+  // GEO LOCATION
+  getDataUserLoc(): Observable<Geolocation[]> {
+    return this._http.get<Geolocation[]>(`${environment.backUrl}/logs_hsa/get_geolocation`).pipe(
+      catchError(error => {
+        // Log an error message if an error occurs during the API call
+        console.error("Error getting all the review data:", error)
+        // Return a new observable with an error message if there's an error
+        return throwError('Something went wrong')
+      })
+    )
+  }
+
+  deleteGeoLocationById(id: string): Observable<any> {
+    return this._http.delete<any>(`${environment.backUrl}/logs_hsa/get_geolocation/${id}`).pipe(
+      catchError(error => {
+        // Log an error message if an error occurs during the API call
+        console.error("Error getting all the review data:", error)
+        // Return a new observable with an error message if there's an error
+        return throwError('Something went wrong')
+      })
+    )
+  }
+
+  deleteGeoLocationAll(): Observable<any> {
+    return this._http.delete<any>(`${environment.backUrl}/logs_hsa/get_geolocation`).pipe(
       catchError(error => {
         // Log an error message if an error occurs during the API call
         console.error("Error getting all the review data:", error)

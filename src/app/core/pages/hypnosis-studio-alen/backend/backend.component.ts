@@ -17,7 +17,6 @@ export class BackendComponent implements OnInit, OnDestroy {
 
   backend: any | undefined;
   spinner: boolean = false;
-
   dataSource = new MatTableDataSource<Logging>()
   displayColumns: string[] = ['log_id', 'route_action', 'domain', 'client_host', 'content', 'datum_vnosa', 'action']
 
@@ -61,6 +60,8 @@ export class BackendComponent implements OnInit, OnDestroy {
       this.loadAllEventsBackend()
     })
   }
+
+
 
   deleteAllLogs() {
     if (confirm('Ali si prepričan, da želiš izbrisati vse vnose?')) {
