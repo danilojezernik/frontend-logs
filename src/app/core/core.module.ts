@@ -3,7 +3,9 @@ import {CommonModule} from '@angular/common';
 import {PrivateComponent} from './pages/hypnosis-studio-alen/private/private.component';
 import {IndexHsaComponent} from './pages/hypnosis-studio-alen/index/index-hsa.component';
 import {PublicComponent} from './pages/hypnosis-studio-alen/public/public.component';
-import {IndexHypnosisStudioAlenComponent} from "./pages/hypnosis-studio-alen/index-hsa/index-hypnosis-studio-alen.component";
+import {
+  IndexHypnosisStudioAlenComponent
+} from "./pages/hypnosis-studio-alen/index-hsa/index-hypnosis-studio-alen.component";
 import {RouterLink} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
 import {MatInputModule} from "@angular/material/input";
@@ -15,7 +17,10 @@ import {ServicesModule} from "../services/services.module";
 import {IndexComponent} from "./pages/index-login/index.component";
 import {FormsModule} from "@angular/forms";
 import {BackendComponent} from "./pages/hypnosis-studio-alen/backend/backend.component";
-import { HeaderComponent } from './header/header.component';
+import {HeaderComponent} from './header/header.component';
+import {DesktopMobileComponent} from './pages/hypnosis-studio-alen/dialogs/desktop-mobile/desktop-mobile.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { UniqueCountsComponent } from './pages/hypnosis-studio-alen/dialogs/unique-counts/unique-counts.component';
 
 
 @NgModule({
@@ -26,17 +31,20 @@ import { HeaderComponent } from './header/header.component';
     IndexHypnosisStudioAlenComponent,
     IndexComponent,
     BackendComponent,
-    HeaderComponent
+    HeaderComponent,
+    DesktopMobileComponent,
+    UniqueCountsComponent
   ],
-    exports: [
-        PrivateComponent,
-        IndexHsaComponent,
-        PublicComponent,
-        IndexHypnosisStudioAlenComponent,
-        IndexComponent,
-        BackendComponent,
-        HeaderComponent
-    ],
+  exports: [
+    PrivateComponent,
+    IndexHsaComponent,
+    PublicComponent,
+    IndexHypnosisStudioAlenComponent,
+    IndexComponent,
+    BackendComponent,
+    HeaderComponent,
+    DesktopMobileComponent
+  ],
   imports: [
     CommonModule,
     RouterLink,
@@ -47,7 +55,8 @@ import { HeaderComponent } from './header/header.component';
     MatButtonModule,
     ServicesModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ]
 })
 export class CoreModule {

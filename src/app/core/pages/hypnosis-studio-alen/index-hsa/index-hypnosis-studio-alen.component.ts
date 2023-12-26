@@ -1,5 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {HypnosisStudioAlenService} from "../../../../services/api/hypnosis-studio-alen-api.service";
+import {DesktopMobileComponent} from "../dialogs/desktop-mobile/desktop-mobile.component";
+import {MatDialog} from "@angular/material/dialog";
+import {UniqueCountsComponent} from "../dialogs/unique-counts/unique-counts.component";
 
 @Component({
   selector: 'app-index',
@@ -7,25 +10,17 @@ import {HypnosisStudioAlenService} from "../../../../services/api/hypnosis-studi
 })
 export class IndexHypnosisStudioAlenComponent implements OnInit {
 
+  _dialog = inject(MatDialog)
   _api = inject(HypnosisStudioAlenService)
-  geolocationData: any;
 
   privateActionCount: number | undefined;
   publicActionCount: number | undefined;
   backendActionCount: number | undefined;
-
-  uniqueClientHosts: any;
+  uniqueClientHostsAll: number | undefined
 
   ngOnInit() {
     this.loadAllActionCounts()
     this.getUniqueClientHosts()
-    this.getAllDataUserGeoLocatin()
-  }
-
-  getAllDataUserGeoLocatin() {
-    this._api.getDataUserLoc().subscribe(data => {
-      this.geolocationData = data
-    })
   }
 
   loadAllActionCounts() {
@@ -42,15 +37,23 @@ export class IndexHypnosisStudioAlenComponent implements OnInit {
     })
   }
 
-  getUniqueClientHosts() {
-    this._api.showAllUniqueClientHostBackend().subscribe((data) => {
-      this.uniqueClientHosts = data;
+  openDialogFetchCounts() {
+    this._dialog.open(DesktopMobileComponent, {
+      width: '350px',
+      height: '250px'
     })
   }
 
-  deleteAllLogs() {
-    this._api.deleteGeoLocationAll().subscribe(() => {
-      this.getAllDataUserGeoLocatin()
+  openDialogUniqueCounts() {
+    this._dialog.open(UniqueCountsComponent, {
+      height: '70%',
+      maxWidth: '550px'
+    })
+  }
+
+  getUniqueClientHosts() {
+    this._api.showAllUniqueClientHostBackend().subscribe((data) => {
+      this.uniqueClientHostsAll = data.length;
     })
   }
 
